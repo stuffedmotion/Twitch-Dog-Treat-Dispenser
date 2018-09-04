@@ -8,8 +8,8 @@ When you're done, you can delete the content in this README and update the file 
 
 ## Server Dependencies
 
--Node.js
--Python
--npm install --global --production windows-build-tools
+- Node.js
+- Python
+- npm install --global --production windows-build-tools
 
 ---
