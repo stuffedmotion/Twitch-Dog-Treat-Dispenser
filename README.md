@@ -11,6 +11,16 @@ The server is a Node.js/Express server running locally on your machine.
 - Python
 - `npm install --global --production windows-build-tools` (If on windows)
 - Setup a MongoDB database (e.g. [MLab](https://mlab.com))
+- Add 3 collections to database 'treats', 'admins', 'settings'
+- Add initial document to 'settings' collection. 
+`{
+    "type": "system",
+    "systemStatus": 1
+}`
+- Add your Twitch Username as an admin to the 'admins' collection. This lets you bypass the cooldown restrictions that other users wou;d have
+`{
+    "name": "YourTwitchName"
+}`
 - Setup a MQTT server (e.g. [EMQTT](http://emqtt.io) or [CloudMQTT](https://cloudmqtt.com)) 
 - Create a new Twitch account to be used as your bot user
 - Generate your OAuth Password for the bot account at [https://twitchapps.com/tmi/](https://twitchapps.com/tmi/)
