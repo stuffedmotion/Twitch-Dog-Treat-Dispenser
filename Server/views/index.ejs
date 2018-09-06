@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Larry Treat Bot</title>
+
+    <style>
+        #robot_status {
+            color: #26b516;
+        }
+
+        #robot_status.offline {
+            color: #d82020;
+        }
+
+        #robot_status.connecting {
+            color: #20a4d8;
+        }
+
+        .robot_actions {
+            margin-top: 15px;
+        }
+
+        #error {
+            display: none;
+        }
+        #log_size{
+            font-size: 10px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        window.mqtt_server = "<%= mqtt_server %>";
+    </script>
+</head>
+
+<body>
+    <div class="ui container" style="padding-top: 30px;">
+        <div id="error" class="ui error message">
+            <i class="close icon"></i>
+            <span id="error_msg">Out of food!</span>
+        </div>
+        <div class="ui grid">
+            <div class="two column row">
+                <div class="column">
+                    <div class="ui message">
+                        <h3>Robot Status</h3>
+                        <div id="robot_status" class="connecting">Connecting...</div>
+                        <div class="robot_actions">
+                            <button data-mode="load" disabled class="ui labeled icon button mini">
+                                <i class="angle double up icon"></i>
+                                Load
+                            </button>
+                            <button data-mode="empty" disabled class="ui labeled icon button mini">
+                                <i class="angle double down icon"></i>
+                                Empty
+                            </button>
+                            <button data-mode="treat" disabled class="ui labeled icon button mini">
+                                <i class="birthday cake icon"></i>
+                                Give treat
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="ui message">
+                        <h3>System Status</h3>
+                        <div>
+                            <button id="toggleSystem" class="ui toggle button">Disabled</button>
+                        </div>
+                    </div>
+                    <a target="_blank" style="color: #99b4cc;" href="http://localhost:18083" class="footer">EMQTTD Dashboard</a>
+                    <br>
+                    <a target="_blank" style="color: #99b4cc;" href="/clearlog" class="footer">Clear Debug Log <span id="log_size"><%= log_size %> KB</span></a>
+                </div>
+                <div class="column">
+                    <div class="ui segment">
+                        <a class="ui blue ribbon label">Treat log</a>
+                        <br>
+                        <div id="larrybotlog" class="ui feed"></div>
+                        <div class="pending">Treats given will be displayed here</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+<script src="https://unpkg.com/mqtt@2.18.3/dist/mqtt.min.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="semantic/dist/semantic.min.js"></script>
+<script src="client.js"></script>
+
+</html>
