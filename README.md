@@ -24,7 +24,17 @@ The server is a Node.js/Express server running locally on your machine.
 - Setup a MQTT server (e.g. [EMQTT](http://emqtt.io) or [CloudMQTT](https://cloudmqtt.com)) 
 - Create a new Twitch account to be used as your bot user
 - Generate your OAuth Password for the bot account at [https://twitchapps.com/tmi/](https://twitchapps.com/tmi/)
-- Edit the **.env** file and update the variables with all of your information
+- Create a file called `.env` in the root of your server directory. Add the following replaced with your information and save 
+```
+DEV=false  
+MQTT_SERVER="ws://localhost:8083/mqtt"  
+TWITCH_CHANNEL="YourTwitchChannelName"  
+TWITCH_BOT_USERNAME="YourBotUserName"  
+TWITCH_BOT_OAUTH="oauth:YourOauthKey Get from https://twitchapps.com/tmi/"  
+SLTOKEN="YourStreamLabsToken If you want to give treats when someone follows automatically. Go to your https://streamlabs.com/dashboard#/apisettings > API Tokens to find your token"  
+DB_CONNECTION_STRING="mongodb://exampledb:password@ds312762.mlab.com:15762/larrybot"  
+DB_NAME="larrybot"  
+```
 - Run `npm install` 
 - Start the server with `node server`
 
