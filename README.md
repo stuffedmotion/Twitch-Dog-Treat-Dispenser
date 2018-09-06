@@ -17,7 +17,7 @@ The server is a Node.js/Express server running locally on your machine.
     "type": "system",
     "systemStatus": 1
 }`
-- Add your Twitch Username in a new document to the 'admins' collection. This lets you bypass the cooldown restrictions that other users would have
+- Add your Twitch Username in a new document to the 'admins' collection. This lets you bypass the cooldown restrictions that other users would have. You can add as many admins as you would like (e.g. channel mods)
 `{
     "name": "YourTwitchName"
 }`
