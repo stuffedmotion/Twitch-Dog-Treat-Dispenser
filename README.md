@@ -29,3 +29,5 @@ See Waltermixxx's [Thingiverse](https://www.thingiverse.com/thing:2187877/files)
 I used an [EMQTT](http://emqtt.io) broker running on the same machine as the Express server to be my MQTT server, rather than using a free cloud MQTT server, it was much faster and more reliable. If you do this, you should go into your router and assign a dedicated IP address to your computer running the server so the arduino/esp8266 can connect easily (e.g. 192.168.0.14).
 
 You may need to download and add certain dependencies that are missing. This was developed for use on a NodeMCU/ESP8266 board, but can likely be easily modified to work with an Arduino
+
+WifiManager library is being used for wifi. On the first run, a wifi access point will be available that you can connect to from your phone. From there you can configure your wifi settings.
