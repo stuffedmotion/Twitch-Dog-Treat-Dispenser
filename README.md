@@ -1,6 +1,6 @@
 >"**LarryBot**" is an automated dog treat dispenser that let's live viewers on Twitch.tv give treats to a good boy on command.
 
-#### See full blog post at [https://tylerpearce.ca/larry-bot/](https://tylerpearce.ca/larry-bot/)
+#### See full blog post at [https://tylerpearce.ca/Twitch-Dog-Treat-Dispenser/](https://tylerpearce.ca/larry-bot/)
 
 # Server 
 The server is a Node.js/Express server running locally on your machine. 
