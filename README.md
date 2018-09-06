@@ -41,3 +41,5 @@ I used an [EMQTT](http://emqtt.io) broker running on the same machine as the Exp
 You may need to download and add certain dependencies that are missing. This was developed for use on a NodeMCU/ESP8266 board, but can likely be easily modified to work with an Arduino
 
 WifiManager library is being used for wifi. On the first run, a wifi access point will be available that you can connect to from your phone. From there you can configure your wifi settings.
+
+Update the MQTT server settings with your own.
