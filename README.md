@@ -45,7 +45,10 @@ The dashboard can be accessed at http://localhost:8090
 The source code here is only for the dispenser. The LED strip lighting source code is not included at the moment. Take a look into [NeoPixelBus](https://github.com/Makuna/NeoPixelBus) as there can be conflicts with servos/interrupts and LED strips.
 
 See Waltermixxx's [Thingiverse](https://www.thingiverse.com/thing:2187877/files) & [post](https://www.raspberrypi.org/forums/viewtopic.php?t=179424) for information on building the 3D printed dispenser. I used [3DHubs](https://3dhubs.com) for printing.
+
 ![Robot Schematic](https://musing-goldberg-cca785.netlify.com/robot/robot_inside.jpg)
+
+This is the [IR beam splitter](https://www.adafruit.com/product/2167) I used and the [servo](https://www.adafruit.com/product/155)
 
 I used an [EMQTT](http://emqtt.io) broker running on the same machine as the Express server to be my MQTT server, rather than using a free cloud MQTT server, it was much faster and more reliable. If you do this, you should go into your router and assign a dedicated IP address to your computer running the server so the arduino/esp8266 can connect easily (e.g. 192.168.0.14).
 
