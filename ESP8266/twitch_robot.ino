@@ -15,7 +15,8 @@
 
 
 
-#define SENSORPIN 14
+#define SENSORPIN 14 //D5
+#define SERVOPIN 2 //D4
 int sensorState = 0, lastState=0; 
 
 
@@ -60,7 +61,7 @@ void setup()
     
     keepAliveTicker.attach(10, keepAlive); //Send robot_status MQTT message every 10 seconds (keep alive)
     
-    myservo.attach(2); //attach servo
+    myservo.attach(SERVOPIN); //attach servo
     myservo.write(90); //90 means stop on a continuous servo
     
     wifiConnectHandler = WiFi.onStationModeGotIP(onWifiConnect);
