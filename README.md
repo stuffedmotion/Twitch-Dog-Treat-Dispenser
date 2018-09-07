@@ -41,7 +41,7 @@ DB_NAME="larrybot"
 The dashboard can be accessed at http://localhost:8090
 
 # The Robot
-
+![Robot Schematic](https://musing-goldberg-cca785.netlify.com/robot/robot_fritz.png)
 The source code here is only for the dispenser. The LED strip lighting source code is not included at the moment. Take a look into [NeoPixelBus](https://github.com/Makuna/NeoPixelBus) as there can be conflicts with servos/interrupts and LED strips.
 
 See Waltermixxx's [Thingiverse](https://www.thingiverse.com/thing:2187877/files) & [post](https://www.raspberrypi.org/forums/viewtopic.php?t=179424) for information on building the 3D printed dispenser. I used [3DHubs](https://3dhubs.com) for printing.
