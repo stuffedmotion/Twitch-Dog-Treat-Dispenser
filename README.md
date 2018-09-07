@@ -3,7 +3,7 @@
 #### See full blog post at [https://tylerpearce.ca/Twitch-Dog-Treat-Dispenser/](https://tylerpearce.ca/larry-bot/)
 
 # Server 
-The server is a Node.js/Express server running locally on your machine. 
+The server is a Node.js/Express server and can be run locally on your machine. 
 
 ### Requirements
 
