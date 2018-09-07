@@ -16,13 +16,11 @@
 
 
 #define SENSORPIN 14
-#define BUZZERPIN 12
 int sensorState = 0, lastState=0; 
 
 
 Servo myservo;
 Ticker servoTicker;
-Ticker buzzerTicker;
 Ticker keepAliveTicker;
 Ticker treatTicker;
 Ticker lightTicker;
@@ -34,10 +32,11 @@ char treat_username[50] = "Kbearz";
 
 
 /****************************************MQTT***************************************/
-#define MQTT_HOST "192.168.0.29"
-#define MQTT_PORT 1883
-#define MQTT_USERNAME "username"
-#define MQTT_PASSWORD "password"
+#define MQTT_HOST "192.168.0.29"  //change to your MQTT server IP
+#define MQTT_PORT 1883 //change to your MQTT server port
+#define MQTT_USERNAME "username" //change to your MQTT username if any
+#define MQTT_PASSWORD "password" //change to your MQTT password if any
+
 const int BUFFER_SIZE = JSON_OBJECT_SIZE(10);
 #define MQTT_MAX_PACKET_SIZE 512;
 
@@ -54,14 +53,16 @@ Ticker wifiReconnectTimer;
 
 void setup()
 {
-    pinMode(SENSORPIN, INPUT_PULLUP);     
+    pinMode(SENSORPIN, INPUT_PULLUP); //servo needs a pullup resistor or use the built-in pullup 
 
 
     Serial.begin(115200);
     
-    keepAliveTicker.attach(10, keepAlive);
-    myservo.attach(2);
-    myservo.write(90);
+    keepAliveTicker.attach(10, keepAlive); //Send robot_status MQTT message every 10 seconds (keep alive)
+    
+    myservo.attach(2); //attach servo
+    myservo.write(90); //90 means stop on a continuous servo
+    
     wifiConnectHandler = WiFi.onStationModeGotIP(onWifiConnect);
     wifiDisconnectHandler = WiFi.onStationModeDisconnected(onWifiDisconnect);
   
@@ -121,8 +122,8 @@ void treatFailure()
   if(HASMQTT){
     mqttClient.publish("treat_failure", 1, false, "empty");
   }
-  change_light(3);
-  lightTicker.attach(5, lightZero);
+  change_light(3); //Change light to error red
+  lightTicker.attach(5, lightZero); //in 5 seconds turn light off
   change_status("online");
 }
 
@@ -131,13 +132,14 @@ void treatSuccess()
   if(HASMQTT){
     mqttClient.publish("treat_success", 1, false, treat_username);
   }
-  change_light(2);
-  lightTicker.attach(5, lightZero);
+  change_light(2); //change light to flashing success
+  lightTicker.attach(5, lightZero); //in 5 seconds turn light off
   change_status("online");
 }
 
 void change_light(int lightState){
-  //send custom JSON data to light over MQTT. 
+  //send custom JSON data to light over MQTT. This is meant to work with my custom home LED system.
+  //You will likely want to implement your own method for the lighting if any. 
   if(HASMQTT){
     if(lightState == 0){
       mqttClient.publish("LED_ROBOT", 1, true, "{\"default\":\"\",\"title\":\"\",\"speed\":1500,\"mode\":\"Gradient Twinkle\",\"icon\":\"\",\"tv_active\":false,\"kitchen_active\":false,\"colors\":[{\"hexcolor\":\"#009aff\",\"slider\":0},{\"hexcolor\":\"#031e2b\",\"slider\":133},{\"hexcolor\":\"#c7edff\",\"slider\":255}],\"colorbytes\":[0,0,154,255,133,3,30,43,255,199,237,255],\"colorstring\":\"#009aff 0%, #031e2b 52.15686274509804%, #c7edff 100%\"}");
@@ -149,7 +151,7 @@ void change_light(int lightState){
        mqttClient.publish("LED_ROBOT", 1, true, "{\"downwards\":\"\",\"title\":\"\",\"speed\":400,\"mode\":\"Gradient Slide\",\"icon\":\"\",\"tv_active\":false,\"kitchen_active\":false,\"colors\":[{\"hexcolor\":\"#ff00e2\",\"slider\":0},{\"hexcolor\":\"#2dff0a\",\"slider\":88},{\"hexcolor\":\"#00efff\",\"slider\":180},{\"hexcolor\":\"#f200b3\",\"slider\":255}],\"colorbytes\":[0,255,0,226,88,45,255,10,180,0,239,255,255,242,0,179],\"colorstring\":\"#ff00e2 0%, #2dff0a 34.509803921568626%, #00efff 70.58823529411765%, #f200b3 100%\"}");
     }
     else if(lightState == 3){
-       mqttClient.publish("LED_ROBOT", 1, true, "{\"greenflash\":\"\",\"title\":\"\",\"speed\":150,\"mode\":\"Gradient Pulse\",\"icon\":\"\",\"tv_active\":false,\"kitchen_active\":false,\"colors\":[{\"hexcolor\":\"#2dff0a\",\"slider\":0},{\"hexcolor\":\"#17e022\",\"slider\":255}],\"colorbytes\":[0,255,45,10,255,255,24,34],\"colorstring\":\"#2dff0a 0%, #17e022 100%\"}");
+       mqttClient.publish("LED_ROBOT", 1, true, "{\"redflash\":\"\",\"title\":\"\",\"speed\":150,\"mode\":\"Gradient Pulse\",\"icon\":\"\",\"tv_active\":false,\"kitchen_active\":false,\"colors\":[{\"hexcolor\":\"#2dff0a\",\"slider\":0},{\"hexcolor\":\"#17e022\",\"slider\":255}],\"colorbytes\":[0,255,45,10,255,255,24,34],\"colorstring\":\"#2dff0a 0%, #17e022 100%\"}");
     }
   }
 }
