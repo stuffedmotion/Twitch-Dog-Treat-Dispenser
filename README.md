@@ -21,7 +21,7 @@ The server is a Node.js/Express server and can be run locally on your machine.
 `{
     "name": "YourTwitchName"
 }`  
-- Setup a MQTT server (e.g. [EMQTT](http://emqtt.io) or [CloudMQTT](https://cloudmqtt.com)) 
+- Setup a MQTT server (e.g. [EMQTT](http://emqtt.io) or [CloudMQTT](https://www.cloudmqtt.com)) 
 - Create a new Twitch account to be used as your bot user
 - Generate your OAuth Password for the bot account at [https://twitchapps.com/tmi/](https://twitchapps.com/tmi/)
 - Create a file called `.env` in the root of your server directory. Add the following replaced with your information and save 
